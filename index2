@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Logfile JS test</title>
+  </head>
+  <body>
+
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="startindex"></div>
+    <div id="log"></div>
+      <script type="text/javascript">
+        var logfile;
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+          if(xmlhttp.status==200 && xmlhttp.readyState==4){
+            logfile = xmlhttp.responseText.split('\t');
+            //find the starting point of the log file
+            var startlogindex = 0;
+            var startlogindexfound = false;
+            while (startlogindexfound == false) {
+              if (logfile[startlogindex] == "startlog"){
+                startlogindexfound = true;
+              }
+              startlogindex = startlogindex+1;
+            }
+            document.getElementById("startindex").innerHTML = startlogindex;
+            var toPrint = "<table><tbody><tr><td>";
+            //logfile.length-startlogindex
+            for (var i = startlogindex; i < 10; i++) {
+              for (var j = 0; j < 5; j++) {
+
+              }
+            }
+
+            document.getElementById("log").innerHTML = toPrint;
+          }
+        }
+        xmlhttp.open("GET","testlog.txt",true);
+        xmlhttp.send();
+      </script>
+  </body>
+</html>
